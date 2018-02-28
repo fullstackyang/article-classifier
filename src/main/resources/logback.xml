@@ -1,0 +1,47 @@
+<configuration debug="false" packagingData="true">
+    <contextName>article classifier</contextName>
+
+    <!-- 属性 -->
+    <property name="LOG_HOME" value="./logs"/>
+
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+
+        <encoder>
+            <pattern>%d [%thread] %level %c{30}@%M[%L] - %m%n</pattern>
+        </encoder>
+    </appender>
+
+
+
+    <!-- 滚动日志文件，这个比较常用 -->
+    <appender name="ROLLINGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 当project等于true的时候file就不会起效果-->
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100KB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <encoder>
+            <!-- %ex就是指抛出的异常，full是显示全部，如果在{}中写入数字，则表示展示多少行 -->
+            <pattern>%-4date [%thread] %-5level %logger{35} - %msg%n%ex{full, DISPLAY_EX_EVAL}</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="org.apache.http" level="ERROR" />
+    <logger name="org.ansj" level="ERROR" />
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLINGFILE" />
+    </root>
+</configuration>
