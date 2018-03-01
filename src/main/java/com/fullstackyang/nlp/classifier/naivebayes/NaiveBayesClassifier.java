@@ -51,6 +51,4 @@ public class NaiveBayesClassifier {
                 .max(Comparator.comparingDouble(r -> r.probability)).orElse(new Result("unkown", 0.0));
         return result.category;
     }
-
-
 }
