@@ -5,7 +5,7 @@
 - 项目根目录下data/是用来存放训练好的模型文件，以及停用词表，当然你可以根据需要修改这些路径，模型文件路径在naivebayes.NaiveBayesModels中修改，停用词表路径在utils.MyStopWord中修改
 - 关于分词器
   - 系统中使用了两个分词器，Ansj（默认）[https://github.com/NLPchina/ansj_seg]和HanLp[https://github.com/hankcs/HanLP]， 这里表示感谢。
-  - 根目录下的lirary/是Ansj所需要的文件
+  - 根目录下的library/是Ansj所需要的文件
   - 如有其他分词，则可以实现NLPTools中的接口，并在实现时转化为Term对象，同时确认已经实现了统计词频的功能，另外词性是用来过滤噪声词的，若分词器未提供词性标注功能，默认可以全部标注为n，然后使用其他过滤方法。
   
 ## 如何训练
