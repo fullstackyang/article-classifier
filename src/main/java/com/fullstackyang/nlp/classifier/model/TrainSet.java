@@ -3,15 +3,12 @@ package com.fullstackyang.nlp.classifier.model;
 import com.fullstackyang.nlp.classifier.utils.FileUtils;
 import com.fullstackyang.nlp.classifier.utils.nlp.NLPTools;
 import com.fullstackyang.nlp.classifier.utils.nlp.TermFilter;
-import com.google.common.base.Functions;
-import com.google.common.collect.Sets;
 import com.google.common.io.PatternFilenameFilter;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.util.*;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
@@ -57,7 +54,7 @@ public class TrainSet {
 
         log.info("所有训练语料读取完成！开始统计...");
         this.totalDoc = categorySet.stream().mapToInt(Category::getDocCount).sum();
-        this.totalTerm = docs.parallelStream().map(Doc::getTermVector).flatMap(List::stream).mapToInt(Term::getTf).sum();
+        this.totalTerm = docs.parallelStream().map(Doc::getTerms).flatMap(List::stream).mapToInt(Term::getTf).sum();
         log.info("统计完成, 总文档数:" + totalDoc + ", 总类别数:" + categorySet.size() + ", 总字词数:" + totalTerm);
 
         log.info("各类别文档数分布:");

@@ -46,13 +46,15 @@ public class Feature {
                     .forEach((k, v) -> categoryDocCounter.merge(k, v, (oldValue, newValue) -> oldValue + newValue));
             feature.getCategoryTermCounter()
                     .forEach((k, v) -> categoryTermCounter.merge(k, v, (oldValue, newValue) -> oldValue + newValue));
-            return this;
-        } else {
-            return this;
         }
+        return this;
     }
 
 
+    /**
+     * 所有包含Feature的文档的数量
+     * @return
+     */
     int getFeatureCount() {
         return categoryDocCounter.values().stream().mapToInt(Integer::intValue).sum();
     }

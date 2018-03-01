@@ -38,7 +38,7 @@ public class Calculator {
      * @return
      */
     public static double chisquare(int A, int B, int C, int D) {
-        // chi = n*(ad-bc)^2.txt/(a+c)*(b+d)*(a+b)*(c+d)
+        // chi = n*(ad-bc)^2/(a+c)*(b+d)*(a+b)*(c+d)
         double chi = Math.log(A + B + C + D) + 2 * Math.log(Math.abs(A * D - B * C))
                 - (Math.log(A + C) + Math.log(B + D) + Math.log(A + B) + Math.log(C + D));
         return Math.exp(chi);

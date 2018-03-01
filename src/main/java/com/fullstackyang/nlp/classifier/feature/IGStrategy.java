@@ -10,8 +10,8 @@ import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
-@AllArgsConstructor
 @Slf4j
+@AllArgsConstructor
 public class IGStrategy implements FeatureSelection.Strategy {
 
     // 所有分类
@@ -19,7 +19,6 @@ public class IGStrategy implements FeatureSelection.Strategy {
 
     //总文档数
     private final int total;
-
 
 
     public Feature estimate(Feature feature) {
@@ -56,3 +55,5 @@ public class IGStrategy implements FeatureSelection.Strategy {
 
     }
 }
+
+

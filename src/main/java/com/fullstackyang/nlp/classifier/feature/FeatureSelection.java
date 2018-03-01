@@ -5,7 +5,6 @@ import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.time.temporal.Temporal;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -44,11 +43,11 @@ public class FeatureSelection {
             private final Map<Term, Feature> featureMap;
 
             private FeatureCounter accumulate(Doc doc) {
-                Map<Term, Feature> temp = doc.getTermVector().parallelStream()
+                Map<Term, Feature> temp = doc.getTerms().parallelStream()
                         .map(t -> new Feature(t, doc.getCategory()))
                         .collect(toMap(Feature::getTerm, Function.identity()));
 
-                if (!featureMap.isEmpty() && !temp.isEmpty())
+                if (!featureMap.isEmpty())
                     featureMap.values().forEach(f -> temp.merge(f.getTerm(), f, Feature::merge));
                 return new FeatureCounter(temp);
             }

@@ -36,6 +36,4 @@ public class ChiSquaredStrategy implements Strategy {
         feature.setScore(chisquared);
         return feature;
     }
-
-
 }

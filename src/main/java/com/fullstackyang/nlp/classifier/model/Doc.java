@@ -13,5 +13,5 @@ public class Doc {
 
     private final Category category;
 
-    private final List<Term> termVector;
+    private final List<Term> terms;
 }
